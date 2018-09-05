@@ -1,0 +1,26 @@
+{% extends "pages/base.html" %}
+{% load humanize %}
+
+<!DOCTYPE html> {% block content %}
+
+<div class="container">
+    {% if course %}
+    <h1>{{course.name}}</h1>
+    <h3>Nhà hàng {{course.restaurant}}</h3>
+    <p>Giá {{course.price | intcomma}} vnđ</p>
+    <p style="color: red;">Mô tả: {{course.description}}</p>
+    <div><img src="{{course.image.url}}" alt="Cannot find this image" class="img-responsive" /></div>
+    <form action="{% url 'cart:cart_add' course.pk %}" method="POST">
+        {{cart_product_form}}
+        {% csrf_token %}
+        <div class="card-footer">
+            <input type="submit" class="btn btn-primary" value="Thêm vào giỏ hàng" style="background-color:brown;color: white ">
+        </div>
+    </form>
+    {% endif %}
+</div>
+
+
+
+
+{% endblock %}

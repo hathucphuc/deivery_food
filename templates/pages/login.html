@@ -1,0 +1,28 @@
+{% extends "pages/base.html" %}
+{% block content %}
+
+<div class="container">
+	<h1>Đăng nhập</h1>
+	<form method="POST" action="{% url 'pages:login' %}">
+		<table>
+			<tr>
+				<td><lable for="username">Username:</lable></td>
+				<td><input type="text" name="username" placeholder="Enter Username"></td>
+			</tr>
+			<tr>
+				<td>
+					<lable for="password">Password:</lable>
+				</td>
+				<td><input type="password" name="password" placeholder="Enter password"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" class="btn btn-primary" value="Submit">
+				</td>
+			</tr>
+		</table>
+		{% csrf_token %}
+	</form>
+</div>
+<div class="container"><font color="red">{{login_result}}</font></div>
+{% endblock %}

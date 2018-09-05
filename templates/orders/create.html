@@ -1,0 +1,42 @@
+{% extends "pages/base.html" %}
+{% block content %}
+
+
+<div class="container">
+	<table align="center">
+		<tr>
+			<td valign="top" width="50%">
+				<h1>Khách hàng</h1>
+				<form action="." method="POST">
+					<table>
+						{% for field in form %}
+						<tr>
+							<td>{{field.label}}</td>
+							<td>{{field}}</td>
+						</tr>
+						{% endfor %}
+						<tr>
+							<td>
+								<p><input type="submit" class="btn btn-primary" value="Đặt hàng"></p>
+							</td>
+						</tr>
+					</table>
+					{% csrf_token %}
+				</form>
+			</td>
+			<td valign="top">
+				<h1>CHi tiết đơn hàng</h1>
+				<ul>
+					{% for item in cart %}
+					<li>
+						{{item.quantity}} món x {{item.course.name}}=<span>{{item.total_price}}</span>
+					</li>
+					{% endfor %}
+				</ul>
+				<ul>Tổng: {{cart.get_total_price}} vnđ</ul>
+			</td>
+		</tr>
+	</table>
+</div>
+
+{% endblock %}

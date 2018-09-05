@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Food delivery</title>
+</head>
+<body>
+	<div class="container">
+		<table align="center">
+			<tr>
+				<td>Chúng tôi đã nhận đơn hàng từ quý khách. Cảm ơn quý khách</td>
+			</tr>
+			<tr>
+				<td>
+					<h1 style="color: blue">Chi tiết đơn hàng</h1>
+					<ul>
+						{% for item in cart %}
+
+						<li>
+							{{item.quantity}} course x {{item.course.name}} = <span>{{item.total_price}}</span>
+						</li>
+						{% endfor %}
+					</ul>
+					<p>Tổng : {{cart.get_total_price}} vnđ</p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+</body>
+</html>

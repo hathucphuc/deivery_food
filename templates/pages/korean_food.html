@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+{% extends "pages/base.html" %}
+{% load humanize %}
+
+
+{% block content %}
+
+<section class="probootstrap-section probootstrap-bg-white">
+    <div class="container">
+        {% if courses %}
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="menus">
+                    {% for value in course1 %}
+                    <li>
+                        <figure class="image"><img src="{{value.image.url}}" alt="Free Bootstrap Template by ProBootstrap.com" class="img-fluid" width="500" height="400"></figure>
+                        <div class="text">
+                            <span class="price">{{value.price|intcomma}} vnđ</span>
+                            <h3>{{value.name}}</h3>
+                            <p>{{value.restaurant}}</p>
+                            <a href="{% url 'pages:course_detail' value.pk %}" class="btn btn-primary" style="float: center;">Xem thêm</a>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="menus">
+                    {% for value in course2 %}
+                    <li>
+                        <figure class="image"><img src="{{value.image.url}}" alt="Free Bootstrap Template by ProBootstrap.com" class="img-fluid" width="500" height="400"></figure>
+                        <div class="text">
+                            <span class="price">{{value.price|intcomma}} vnđ</span>
+                            <h3>{{value.name}}</h3>
+                            <p>{{value.restaurant}}</p>
+                            <a href="{% url 'pages:course_detail' value.pk %}" class="btn btn-primary" style="float: center;">Xem thêm</a>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+
+
+
+
+{% endblock %}
+
+
+

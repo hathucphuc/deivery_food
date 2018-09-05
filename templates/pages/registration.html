@@ -1,0 +1,34 @@
+{% extends "pages/base.html" %}
+{% block content %}
+
+<div class="container">
+    {% if registered %}
+    <h3>Bạn đã đăng ký thành công</h3>
+    {% else %}
+    <h3>Điền vào form đăng ký</h3>
+    <form method="POST" enctype="multipart/form-data">
+        <table>
+            {% for field in form_user %}
+            <tr>
+                <td>{{field.label}}</td>
+                <td>{{field}}</td>
+            </tr>
+            {% endfor %}
+            {% for field1 in form_por %}
+            <tr>
+                <td>{{field1.label}}</td>
+                <td>{{field1}}</td>
+            </tr>
+            {% endfor %}
+            {% csrf_token %}
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" class="btn btn-primary" value="Đăng ký">
+                </td>
+            </tr>
+        </table>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}
+    

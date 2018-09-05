@@ -1,0 +1,49 @@
+{% extends "pages/base.html" %} {% load humanize %} {% block content %}
+<div class="container">
+    <div class="row text-center">
+        <h1>Thông tin giỏ hàng</h1>
+        <table class="table" style="width: 100%; text-align: center">
+            <thead>
+                <th>Món ăn</th>
+                <th>Tên món ăn</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+                <th>Xóa</th>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                <tr>
+                    <td>
+                        <a href="{% url 'pages:course_detail' item.course.pk %}"><img src="{{item.course.image.url}}" alt="" width="150"></a>
+                    </td>
+                    <td>{{item.course.name}}</td>
+                    <td>
+                        <form action="{% url 'cart:cart_add' item.course.pk %}" method="POST">
+                            {{item.update_quantity_form.quantity}} {{item.update_quantity_form.update}}
+                            <input type="submit" value="Cập nhật" /> {% csrf_token %}
+
+                        </form>
+                    </td>
+                    <td>{{item.price|intcomma}} vnđ</td>
+                    <td>{{item.total_price|intcomma}} vnđ</td>
+                    <td><a href="{% url 'cart:cart_remove' item.course.pk %}">Xóa</a></td>
+                </tr>
+                {% endfor %}
+                <tr class="total">
+                    <td colspan="4">Tổng: {{cart.get_total_price}} vnđ</td>
+                    <td class="num"></td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="text-right">
+            <a href="{% url 'pages:index' %}" class="button light">Tiếp tục mua hàng</a>
+            <a href="{% url 'orders:order_create' %}" class="btn btn-primary">Thanh toán</a>
+        </p>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
